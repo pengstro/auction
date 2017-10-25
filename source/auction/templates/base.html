@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<ul>
+    <li><a href="{% url 'index' %}">{% trans 'Home' %}</a></li>
+    <li>
+        <form action="{% url 'auction:search' %}">
+        {% trans 'Search for auctions by title' %}: <input type="text" name="search"/>
+        <input type="submit" value="{% trans 'Search' %}"/>
+        </form>
+    </li>
+    <li><a href="{% url 'auction:change_language' %}">{% trans 'Change language' %}</a></li>
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'auction:new_auction' %}">{% trans 'Create a new auction' %}</a></li>
+        <li><a href="{% url 'auction:edit_user' %}">{% trans 'Edit user account' %}</a></li>
+        <li><a href="{% url 'auction:logout' %}">{% trans 'Log out' %}</a></li>
+    {% else %}
+        <li>
+            <a href="{% url 'auction:login' %}?next={% url 'index' %}">
+                {% trans 'Log in or register' %}
+            </a>
+        </li>
+    {% endif %}
+</ul>

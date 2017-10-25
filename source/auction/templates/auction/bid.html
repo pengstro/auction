@@ -1,0 +1,11 @@
+{% include 'base.html' %}
+
+<h1>Bid</h1>
+
+<p>Item description: {{ form.instance.item_description }}</p>
+
+<form action="{% url 'auction:bid' form.instance.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Bid"/>
+</form>

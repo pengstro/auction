@@ -1,0 +1,9 @@
+{% include 'base.html' %}
+
+<h1>Edit item description</h1>
+
+<form action="{% url 'auction:edit_description' form.instance.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Done"/>
+</form>

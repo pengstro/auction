@@ -1,0 +1,28 @@
+{% include 'base.html' %}
+
+<h1>{{ auction.title }}</h1>
+
+<ul>
+    <li>Seller: {{ auction.seller }}</li>
+    <li>Item description: {{ auction.item_description }}</li>
+    <li>Highest bid: 
+        <select>
+            <option>{{ auction.price }} €</option>
+            {% for key, value in currencies.items %}
+                <option>{{ value }} {{ key }}</option>
+            {% endfor %}
+        </select>
+    </li>
+    <li>Deadline: {{ auction.deadline }}</li>
+</ul>
+
+{% if is_active %}
+    {% if is_seller %}
+        <a href="{% url 'auction:edit_description' auction.id %}">Edit item description</a>
+    {% else %}
+        <a href="{% url 'auction:bid' auction.id %}">Bid</a>
+    {% endif %}
+    {% if user.is_staff %}
+        <a href="{% url 'auction:ban' auction.id %}">Ban</a>
+    {% endif %}
+{% endif %}

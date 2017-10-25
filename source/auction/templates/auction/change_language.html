@@ -1,0 +1,10 @@
+{% include 'base.html' %}
+{% load i18n %}
+
+<h1>{% trans 'Change language' %}</h1>
+
+<form action="{% url 'auction:change_language' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="{% trans 'Set language' %}"/>
+</form>

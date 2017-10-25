@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+{% load i18n %}
+
+{% if auction_list %}
+    <h1>{% trans 'List of auctions' %}</h1>
+    <ul>
+    {% for auction in auction_list %}
+        {% if auction.is_active or user.is_staff %}
+            <li><a href="{% url 'detail' auction.id %}">{{ auction.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <h1>No auctions are available.</h1>
+{% endif %}
