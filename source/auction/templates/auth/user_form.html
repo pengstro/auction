@@ -1,0 +1,9 @@
+{% include 'base.html' %}
+
+<h1>Register new user</h1>
+
+<form method="post" action="{% url 'auction:register' %}">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Register" />
+</form>

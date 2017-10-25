@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+
+<h1>Search results</h1>
+
+{% if auction_list %}
+    <ul>
+    {% for auction in auction_list %}
+        {% if auction.is_active or user.is_staff %}
+            <li><a href="{% url 'detail' auction.id %}">{{ auction.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No auctions matching the search query exist.</p>
+{% endif %}
